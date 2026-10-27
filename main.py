@@ -4,7 +4,7 @@ IMZALAR = {
     "25504446": "PDF",
     "4d5a": "EXE",
 }
-dosya_yolu ="test_dosyalari/stant.jpeg"
+dosya_yolu ="main.py"
 with open(dosya_yolu, "rb") as f:      
     ilk_baytlar = f.read(8)            
 
@@ -18,5 +18,5 @@ for imza, tur in IMZALAR.items():
         bulunan_tur = tur
         break
 
-    print("Gerçek Tür:", bulunan_tur)
+print("Gerçek Tür:", bulunan_tur)
 
