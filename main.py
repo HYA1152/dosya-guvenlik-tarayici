@@ -1,10 +1,18 @@
+import os
+
 IMZALAR = {
     "89504e470d0a1a0a": "PNG",
     "ffd8ff": "JPEG",
     "25504446": "PDF",
     "4d5a": "EXE",
 }
-dosya_yolu ="main.py"
+TUR_UZANTILARI = {
+    "PNG": [".png"],
+    "JPEG": [".jpg", ".jpeg"],
+    "PDF": [".pdf"],
+    "EXE": [".exe"],
+}
+dosya_yolu = "main.py"
 with open(dosya_yolu, "rb") as f:      
     ilk_baytlar = f.read(8)            
 
@@ -19,4 +27,16 @@ for imza, tur in IMZALAR.items():
         break
 
 print("Gerçek Tür:", bulunan_tur)
+
+uzanti = os.path.splitext(dosya_yolu)[1].lower()
+print("Uzanti:", uzanti)
+
+if bulunan_tur == "Bilinmiyor":
+    print("SONUÇ: Tür taninamadi, dikkatli ol")
+elif uzanti in TUR_UZANTILARI[bulunan_tur]:
+    print("SONUÇ: Uzanti ile gerçek tür uyuşuyor")
+else:
+    print("UYARI: Uzanti", uzanti, "ama gerçek tür", bulunan_tur, "- ŞÜPHELİ!")
+
+
 
